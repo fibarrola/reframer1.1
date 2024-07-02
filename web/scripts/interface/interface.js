@@ -381,9 +381,9 @@ document.getElementById("num-squiggles").oninput = (e) => {
     setLineLabels(mainSketch.sketchLayer);
 };
 
-frameDropIn.forEach((button) =>
-    button.addEventListener("click", () => focusLogic())
-);
+// frameDropIn.forEach((button) =>
+//     button.addEventListener("click", () => focusLogic())
+// );
 
 document
     .querySelector(".local-prompts>button")

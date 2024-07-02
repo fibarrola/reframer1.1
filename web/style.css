@@ -745,17 +745,6 @@ hr {
     color: white;
 }
 
-.action-focus {
-    background: linear-gradient(var(--grad-3) 0%, var(--grad-4) 100%);
-    color: var(--color-main);
-    background: rgb(245 245 245);
-}
-
-.action-focus i {
-    background: rgb(106 82 255 / 8%);
-    color: var(--color-main);
-}
-
 
 /* End Clip Actions */
 
@@ -779,10 +768,6 @@ hr {
     width: 100%;
     box-sizing: border-box;
     padding: 1em;
-}
-
-input:focus {
-    outline-color: var(--color-main);
 }
 
 .inactive-prompt {

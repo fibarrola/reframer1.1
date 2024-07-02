@@ -19,7 +19,7 @@ picker.onChange = (color) => {
 };
 
 setLineLabels(mainSketch.sketchLayer);
-setActionState("inactive");
+// setActionState("inactive");
 hide(historyBlock);
 setPointSize(controller.strokeWidth);
 setThisColor("rgb(54 54 54)");
@@ -44,7 +44,6 @@ if (!useTool) {
         elem.style.pointerEvents = "none";
         // elem.style.marginLeft = "-9000px";
     })
-    focusButton.style.visibility = "hidden";
 
 }
 // document.querySelector(".tool-view").style.display = "none";
