@@ -422,15 +422,15 @@ respectSlider.onmouseup = () => {
     }
 };
 
-header.addEventListener("click", () => {
-    accordionItem.classList.toggle("open");
-    accordionItem.classList.toggle("closed");
-    if (accordionItem.classList.contains("open")) {
-        body.style.maxHeight = body.scrollHeight + "px";
-    } else {
-        body.style.maxHeight = "0px";
-    }
-});
+// header.addEventListener("click", () => {
+//     accordionItem.classList.toggle("open");
+//     accordionItem.classList.toggle("closed");
+//     if (accordionItem.classList.contains("open")) {
+//         body.style.maxHeight = body.scrollHeight + "px";
+//     } else {
+//         body.style.maxHeight = "0px";
+//     }
+// });
 
 socketLight.addEventListener("click", () => {
     if (!socket) connect();

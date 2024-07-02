@@ -533,9 +533,6 @@ hr {
     color: #757575;
 }
 
-.panel-closed {
-    color: #757575;
-}
 
 .top-center {
     position: absolute;
@@ -1087,26 +1084,21 @@ display: none!important;
 .accordion-item {
     padding: 1em;
     border-radius: 1em;
-    background: #f5f5f5;
+    /* background: #f5f5f5;
 
     color: #1b1b1b;
-    border: none;
+    border: none; */
     margin-bottom: 9em;
+    background: linear-gradient(var(--grad-1) 0%, var(--grad-2) 100%);
 }
 
 .accordion-item-body {
-    max-height: 0;
     overflow: hidden;
     transition: 0.25s;
 }
 
 .accordion-item-body>div:first-child {
     margin-top: 0.5em;
-}
-
-.open {
-    /* border: 2px solid var(--color-main); */
-    background: linear-gradient(var(--grad-1) 0%, var(--grad-2) 100%);
 }
 
 .open .accordion-item-body {
@@ -1635,12 +1627,6 @@ display: none!important;
     font-size: 1em;
     color: #a091ff;
 }
-
-
-/* .inactive-section {
-    opacity: 0.5;
-    pointer-events: none;
-} */
 
 #art-control-final {
     display: flex;
