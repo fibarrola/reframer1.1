@@ -207,12 +207,6 @@
         </div>
     </section>
 
-    <!-- Floating UI -->
-
-    <div id="picker-ui">
-        <div id="color-picker"></div>
-    </div>
-
     <div class="socket-connect"></div>
 
     <div id="modal">
@@ -332,7 +326,7 @@
     </div> -->
 
     <div class="drawing-tool-panel">
-        <div></div>
+        <div id="drawing-panel-handle"></div>
         <div class="style-window tool-view">
             <div class="animation-window">
                 <!-- Inline SVGs -->
@@ -397,46 +391,41 @@
                 </svg>
             </div>
         </div>
-
-        <div class="pointer-tool tooltip expanded">
-            <span class="tooltiptext">Select (⇧+S)</span>
-            <img draggable="false" src="public/vector/tool-pointer.svg" alt="pointer"></img>
-        </div>
-        <div class="erase-tool tooltip expanded">
-            <span class="tooltiptext">Erase (⇧+E)</span>
-            <img draggable="false" src="public/vector/erase-pencil.svg" alt="erasor"></img>
-        </div>
-        <div class="pen-tool tooltip selected expanded">
-            <span class="tooltiptext">Pencil (⇧+P)</span>
-            <img draggable="false" src="public/vector/tip-pencil.svg" alt="pencil"></img>
+        
+        <div id="giffy-tools">
+            <div class="pointer-tool tooltip expanded">
+                <span class="tooltiptext">Select (⇧+S)</span>
+                <img draggable="false" src="public/vector/tool-pointer.svg" alt="pointer"></img>
+            </div>
+            <div class="erase-tool tooltip expanded">
+                <span class="tooltiptext">Erase (⇧+E)</span>
+                <img draggable="false" src="public/vector/erase-pencil.svg" alt="erasor"></img>
+            </div>
+            <div class="pen-tool tooltip selected expanded">
+                <span class="tooltiptext">Pencil (⇧+P)</span>
+                <img draggable="false" src="public/vector/tip-pencil.svg" alt="pencil"></img>
+            </div>
         </div>
         <div id="style-content">
-            <div class="expanded" id="basic-styles">
+            <div id="color-picker"></div>
+            <div id="basic-styles">
                 <i class="fas fa-fw fa-eye-dropper" id="dropper"></i>
                 <div class="stroke-circle"></div>
                 <div class="stroke-circle"></div>
                 <div class="stroke-circle"></div>
-                <div class="red swatch"></div>
-                <div class="yellow swatch "></div>
-                <div class="green swatch"></div>
-                <div class="blue swatch"></div>
-                <div class="pink swatch "></div>
-                <div class="purple swatch"></div>
-                <div class="off-black swatch"></div>
-                <div class="white swatch"></div>
             </div>
-            <div class="expanded" id="stroke-style">
+            <div id="stroke-style">
                 <div class="stroke-control">
                     <div class="flex">
                         <p class="slider-label">Stroke</p>
                     </div>
-                    <input type="number" id="width-slider" value="7" min="1" max="131">
+                    <input type="number" id="width-slider" autocomplete="off" class="val-input flex" value="7" min="1" max="131">
                 </div>
                 <div class="stroke-control">
                     <div class="flex">
                         <p class="slider-label">Opacity</p>
                     </div>
-                    <input type="number" id="alpha-slider" step="0.01" value=".75" min="0" max="1">
+                    <input type="number" id="alpha-slider" autocomplete="off" class="val-input flex" step="0.01" value=".75" min="0" max="1">
                 </div>
             </div>
             <div id="expanded-styles">
@@ -444,11 +433,9 @@
                     <div class="style-window expanded" id="stroke-dot">
                         <div id="point-size"></div>
                     </div>
-
                 </div>
             </div>
         </div>
-        <div class="style-window-toggle"><i class="fa-solid fa-minus"></i></div>
     </div>
 </body>
 
