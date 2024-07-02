@@ -2,6 +2,7 @@ const spark = new PaperScope();
 spark.setup(sparkCanvas);
 spark.activate();
 
+
 const smoothing = 0.98;
 const speed = 0.6;
 let renderShape, pointA, pointB, sparkPath;

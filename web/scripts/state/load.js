@@ -9,7 +9,7 @@ const loadResponse = (result) => {
             // for 150 range
             // let normalised = scaleRange(mainSketch.semanticLoss, -1.7, 0, 150, 0);
             let normalised = scaleLoss(mainSketch.semanticLoss);
-            document.querySelectorAll(".spark-val")[1].innerHTML = `${Math.floor(
+            document.querySelectorAll(".spark-val")[0].innerHTML = `${Math.floor(
         normalised
       )}%`;
       
