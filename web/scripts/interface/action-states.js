@@ -1,8 +1,7 @@
 const actions = document.querySelectorAll(".clip-actions>div");
-const [drawButton, focusButton, exploreButton, stopButton] = actions;
+const [drawButton, exploreButton, stopButton] = actions;
 
 drawButton.addEventListener("click", () => drawLogic());
-focusButton.addEventListener("click", () => focusLogic());
 stopButton.addEventListener("click", () => stopLogic());
 exploreButton.addEventListener("click", () => exploreLogic());
 
@@ -31,7 +30,6 @@ const setActionState = (state) => {
 
 const setModeDefault = () => {
     drawButton.className = "action-default";
-    focusButton.className = "action-default";
     exploreButton.className = "action-default";
     stopButton.className = "action-inactive";
     actions.forEach((button) => button.classList.add("tooltip"));
@@ -40,8 +38,8 @@ const setModeDefault = () => {
     document.querySelector(".project").classList.remove("greeeeeen");
 
     // hide(explorerPanel);
-    frameDropIn[0].style.display = "initial";
-    frameDropIn[1].style.display = "flex";
+    // frameDropIn[0].style.display = "initial";
+    // frameDropIn[1].style.display = "flex";
 
     canvas.classList.remove("loading-canvas");
     document.getElementById("loading").style.display = "none";
@@ -62,7 +60,6 @@ const setModeDraw = () => {
     exploreButton.className = "action-inactive";
     drawButton.className = "action-current";
     hint.innerHTML = `Don't wait. Draw with me!`;
-    focusButton.className = "action-default";
     stopButton.className = "action-stop";
     actions.forEach((button) => button.classList.add("tooltip"));
 
@@ -72,8 +69,8 @@ const setModeDraw = () => {
     hide(explorerPanel);
     hide(historyBlock);
 
-    frameDropIn[0].style.display = "initial";
-    frameDropIn[1].style.display = "flex";
+    // frameDropIn[0].style.display = "initial";
+    // frameDropIn[1].style.display = "flex";
 
     accordionItem.classList.add("open");
     accordionItem.classList.remove("closed");
@@ -89,7 +86,6 @@ const setModeDraw = () => {
 const setModeExplore = () => {
     exploreButton.className = "action-current";
     drawButton.className = "action-inactive";
-    focusButton.className = "action-inactive";
     stopButton.className = "action-stop";
     actions.forEach((button) => button.classList.add("tooltip"));
 
@@ -97,7 +93,6 @@ const setModeExplore = () => {
     hint.innerHTML = `View creative possibilities in the explorer`;
     hide(historyBlock);
     show(explorerPanel);
-    frameDropIn.forEach((button) => hide(button));
 
     accordionItem.classList.add("open");
     accordionItem.classList.remove("closed");
@@ -112,7 +107,6 @@ const setModeExplore = () => {
 
 const setModeFrame = () => {
     drawButton.className = "action-default";
-    focusButton.className = "action-focus";
     exploreButton.className = "action-inactive";
     stopButton.className = "action-inactive";
     actions.forEach((button) => button.classList.add("tooltip"));
@@ -121,7 +115,7 @@ const setModeFrame = () => {
 
     document.querySelector(".project").classList.add("greeeeeen");
 
-    frameDropIn.forEach((button) => hide(button));
+    // frameDropIn.forEach((button) => hide(button));
     undoButton.classList.add("inactive-section");
     redoButton.classList.add("inactive-section");
 
@@ -139,13 +133,12 @@ const setModeFrame = () => {
 
 const setModeActiveFrame = () => {
     drawButton.className = "action-current";
-    focusButton.className = "action-focus";
     exploreButton.className = "action-inactive";
     stopButton.className = "action-stop";
     actions.forEach((button) => button.classList.add("tooltip"));
     prompt.classList.add("inactive-prompt")
 
-    frameDropIn.forEach((button) => hide(button));
+    // frameDropIn.forEach((button) => hide(button));
 
     document.querySelector(".project").classList.add("greeeeeen");
 

@@ -2,13 +2,8 @@ const spark = new PaperScope();
 spark.setup(sparkCanvas);
 spark.activate();
 
-// sparkCanvas.style.width =
-//     document.querySelector(".panel-section").clientWidth + "px";
-// sparkCanvas.style.height = 150 + "px";
-// sparkCanvas.width = document.querySelector(".panel-section").clientWidth;
-// sparkCanvas.height = 150;
 
-const easing = 0.98;
+const smoothing = 0.98;
 const speed = 0.6;
 let renderShape, pointA, pointB, sparkPath;
 
@@ -64,35 +59,17 @@ spark.view.onFrame = () => {
         (controller.drawState === "draw" || controller.drawState === "active-frame") &&
         mainSketch.semanticLoss
     ) {
-        // for 150 range
-        // let normalised = scaleRange(mainSketch.semanticLoss, -1, 0, 150, 0);
-        // document.querySelectorAll(".spark-val")[1].innerHTML =
-        //     Math.floor(normalised);
-
-        // for pixel range
-        let newY = scaleRange(
-            mainSketch.semanticLoss, -1.7,
-            0,
-            0,
-            spark.view.bounds.bottom
-        );
-        // for 150 range
-        // let normalised = scaleRange(newY, spark.view.bounds.bottom, 0, 0, 150);
-
-        let dy = sparkPath.lastSegment.point.y - newY;
-        newY += dy * easing;
-
-        sparkPath.add(new Point(spark.view.bounds.right, newY));
-        sparkKnob.style.top = newY + "px";
+        let newY = scaleLoss(mainSketch.semanticLoss);
+        
+        // This is the distance from the "roof". AKA, 100 - a softened value of Y 
+        let smoothNegY = Math.floor(sparkPath.lastSegment.point.y*smoothing + (100-newY)*(1-smoothing))
+        
+        sparkPath.add(new Point(spark.view.bounds.right, smoothNegY));
+        sparkKnob.style.top = smoothNegY + "px";
         sparkPath.position.x -= speed;
         createSparkShadow();
-
-        let normalised = scaleRange(newY, spark.view.bounds.bottom, 0, 0, 150);
-
         document.querySelectorAll(".spark-val")[1].innerHTML =
-            Math.floor(normalised);
-
-        // console.log(newY);
+            Math.floor(newY);
     }
     mainScope.activate(); //return to main
 };

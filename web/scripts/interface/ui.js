@@ -75,8 +75,6 @@ const canvasBounds = canvas.getBoundingClientRect();
 const project = document.querySelector(".project");
 const projectBounds = project.getBoundingClientRect();
 
-const frameDropIn = document.querySelectorAll(".canvas-focus");
-
 const sketchSize = 190;
 
 let size, frameOutline, scaleRatio;

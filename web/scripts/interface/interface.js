@@ -381,9 +381,9 @@ document.getElementById("num-squiggles").oninput = (e) => {
     setLineLabels(mainSketch.sketchLayer);
 };
 
-frameDropIn.forEach((button) =>
-    button.addEventListener("click", () => focusLogic())
-);
+// frameDropIn.forEach((button) =>
+//     button.addEventListener("click", () => focusLogic())
+// );
 
 document
     .querySelector(".local-prompts>button")
@@ -422,15 +422,15 @@ respectSlider.onmouseup = () => {
     }
 };
 
-header.addEventListener("click", () => {
-    accordionItem.classList.toggle("open");
-    accordionItem.classList.toggle("closed");
-    if (accordionItem.classList.contains("open")) {
-        body.style.maxHeight = body.scrollHeight + "px";
-    } else {
-        body.style.maxHeight = "0px";
-    }
-});
+// header.addEventListener("click", () => {
+//     accordionItem.classList.toggle("open");
+//     accordionItem.classList.toggle("closed");
+//     if (accordionItem.classList.contains("open")) {
+//         body.style.maxHeight = body.scrollHeight + "px";
+//     } else {
+//         body.style.maxHeight = "0px";
+//     }
+// });
 
 socketLight.addEventListener("click", () => {
     if (!socket) connect();

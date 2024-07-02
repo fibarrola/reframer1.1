@@ -219,6 +219,10 @@ const scaleRange = (number, inMin, inMax, outMin, outMax) => {
     return ((number - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
 };
 
+const scaleLoss = (loss) => {
+    return Math.min(98, 100*Math.sqrt(-1.5*loss));
+};
+
 const showHide = (item) => {
     if (item.style.display === "flex" || item.style.display === "") {
         item.style.display = "none";

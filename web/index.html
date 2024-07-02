@@ -67,11 +67,6 @@
                         <i class="fa-solid fa-robot fa-fw"></i>
                         <p>Draw</p>
                     </div>
-                    <div class="frame-ui action-default tooltip" id="focus">
-                        <span class="tooltiptext">Labeling parts the image helps AI focus</span>
-                        <i class="fa-solid fa-note-sticky fa-fw" id="focus-icon"></i>
-                        <p>Focus</p>
-                    </div>
                     <div class="action-default tooltip" id="explore">
                         <span class="tooltiptext">Get options for developing the sketch</span>
                         <i class="fa-solid fa-lightbulb fa-fw"></i>
@@ -92,26 +87,18 @@
                     <h3 class="current-status">Inactive</h3>
                 </div>
                 <p class="spark-info">Sketch resembles the AI text prompt.</p>
-                <h3 class="spark-val prompt-match">0/150</h3>
+                <h3 class="spark-val prompt-match">0%</h3>
                 <div class="spark-ui">
                     <div class="spark-knob">
                         <p class="spark-val"></p>
                     </div>
-                    <p class="prompt-loss">Loss: 0</p>
                     <canvas class="sparkline" resize></canvas>
                 </div>
             </div>
 
             <hr />
 
-            <div class="inactive-section closed panel-section accordion-item">
-                <header class="accordion-item-header">
-                    <button class="accordion-item-button">
-                        <i id="add-icon" class="fa-solid fa-plus"></i>
-                        <i id="subtract-icon" class="fa-solid fa-minus"></i>
-                    </button>
-                    <h3 class="accordion-item-question">Advanced</h3>
-                </header>
+            <div class="closed panel-section accordion-item">
                 <div class="accordion-item-body">
                     <div class="control-lines flex slider-container">
                         <i class="fa-solid fa-hashtag"></i>
@@ -209,10 +196,6 @@
                 </div>
             </div>
             <canvas id="canvas"></canvas>
-            <div class="frame-ui inactive-section canvas-focus">
-                <p>Focus</p>
-                <i class="fa-solid fa-note-sticky fa-fw"></i>
-            </div>
         </div>
         <div class="hint">
             <span class="hint-text">Draw with AI by adding a prompt and clicking draw.</span>
@@ -220,16 +203,10 @@
         </div>
     </section>
 
-    <!-- Floating UI -->
-
-    <div id="picker-ui">
-        <div id="color-picker"></div>
-    </div>
-
     <div class="socket-connect"></div>
 
     <div id="modal">
-        <div id="simple-modal">
+        <div id="simple-modal" class="simple-modal">
             <div class="flex">
                 <h2 id="modal-title"></h2>
                 <i id="modal-cross" class="fa-solid fa-xmark"></i>
@@ -345,7 +322,7 @@
     </div> -->
 
     <div class="drawing-tool-panel">
-        <div></div>
+        <div id="drawing-panel-handle"></div>
         <div class="style-window tool-view">
             <div class="animation-window">
                 <!-- Inline SVGs -->
@@ -410,46 +387,41 @@
                 </svg>
             </div>
         </div>
-
-        <div class="pointer-tool tooltip expanded">
-            <span class="tooltiptext">Select (⇧+S)</span>
-            <img draggable="false" src="public/vector/tool-pointer.svg" alt="pointer"></img>
-        </div>
-        <div class="erase-tool tooltip expanded">
-            <span class="tooltiptext">Erase (⇧+E)</span>
-            <img draggable="false" src="public/vector/erase-pencil.svg" alt="erasor"></img>
-        </div>
-        <div class="pen-tool tooltip selected expanded">
-            <span class="tooltiptext">Pencil (⇧+P)</span>
-            <img draggable="false" src="public/vector/tip-pencil.svg" alt="pencil"></img>
+        
+        <div id="giffy-tools">
+            <div class="pointer-tool tooltip expanded">
+                <span class="tooltiptext">Select (⇧+S)</span>
+                <img draggable="false" src="public/vector/tool-pointer.svg" alt="pointer"></img>
+            </div>
+            <div class="erase-tool tooltip expanded">
+                <span class="tooltiptext">Erase (⇧+E)</span>
+                <img draggable="false" src="public/vector/erase-pencil.svg" alt="erasor"></img>
+            </div>
+            <div class="pen-tool tooltip selected expanded">
+                <span class="tooltiptext">Pencil (⇧+P)</span>
+                <img draggable="false" src="public/vector/tip-pencil.svg" alt="pencil"></img>
+            </div>
         </div>
         <div id="style-content">
-            <div class="expanded" id="basic-styles">
+            <div id="color-picker"></div>
+            <div id="basic-styles">
                 <i class="fas fa-fw fa-eye-dropper" id="dropper"></i>
                 <div class="stroke-circle"></div>
                 <div class="stroke-circle"></div>
                 <div class="stroke-circle"></div>
-                <div class="red swatch"></div>
-                <div class="yellow swatch "></div>
-                <div class="green swatch"></div>
-                <div class="blue swatch"></div>
-                <div class="pink swatch "></div>
-                <div class="purple swatch"></div>
-                <div class="off-black swatch"></div>
-                <div class="white swatch"></div>
             </div>
-            <div class="expanded" id="stroke-style">
+            <div id="stroke-style">
                 <div class="stroke-control">
                     <div class="flex">
                         <p class="slider-label">Stroke</p>
                     </div>
-                    <input type="number" id="width-slider" value="7" min="1" max="131">
+                    <input type="number" id="width-slider" autocomplete="off" class="val-input flex" value="7" min="1" max="131">
                 </div>
                 <div class="stroke-control">
                     <div class="flex">
                         <p class="slider-label">Opacity</p>
                     </div>
-                    <input type="number" id="alpha-slider" step="0.01" value=".75" min="0" max="1">
+                    <input type="number" id="alpha-slider" autocomplete="off" class="val-input flex" step="0.01" value=".75" min="0" max="1">
                 </div>
             </div>
             <div id="expanded-styles">
@@ -457,11 +429,9 @@
                     <div class="style-window expanded" id="stroke-dot">
                         <div id="point-size"></div>
                     </div>
-
                 </div>
             </div>
         </div>
-        <div class="style-window-toggle"><i class="fa-solid fa-minus"></i></div>
     </div>
 </body>
 

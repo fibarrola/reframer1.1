@@ -7,15 +7,12 @@ const loadResponse = (result) => {
             mainSketch.semanticLoss = parseFloat(result.loss);
 
             // for 150 range
-            let normalised = scaleRange(mainSketch.semanticLoss, -1.7, 0, 150, 0);
+            // let normalised = scaleRange(mainSketch.semanticLoss, -1.7, 0, 150, 0);
+            let normalised = scaleLoss(mainSketch.semanticLoss);
             document.querySelectorAll(".spark-val")[0].innerHTML = `${Math.floor(
         normalised
-      )}/150`;
-
-            document.querySelector(
-                ".prompt-loss"
-            ).innerHTML = `Loss: ${mainSketch.semanticLoss.toPrecision(4)}`;
-
+      )}%`;
+      
             incrementHistory();
             setLineLabels(mainSketch.sketchLayer);
         }
