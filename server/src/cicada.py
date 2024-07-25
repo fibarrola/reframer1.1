@@ -209,14 +209,14 @@ class CICADA:
         for k in range(len(self.points_vars)):
             if self.drawing.traces[k].is_fixed:
                 points_loss += torch.norm(self.points_vars[k] - self.points_vars0[k])
-                colors_loss += torch.norm(self.color_vars[k] - self.color_vars0[k])
-                widths_loss += torch.norm(
-                    self.stroke_width_vars[k] - self.stroke_width_vars0[k]
-                )
+                # colors_loss += torch.norm(self.color_vars[k] - self.color_vars0[k])
+                # widths_loss += torch.norm(
+                #     self.stroke_width_vars[k] - self.stroke_width_vars0[k]
+                # )
 
         loss += self.w_points * points_loss
-        loss += self.w_colors * colors_loss
-        loss += self.w_widths * widths_loss
+        # loss += self.w_colors * colors_loss
+        # loss += self.w_widths * widths_loss
         loss += self.w_img * img_loss
 
         # geo_loss = self.clipConvLoss(img * self.mask + 1 - self.mask, self.img0)
@@ -232,11 +232,11 @@ class CICADA:
 
         # Take a gradient descent step.
         self.points_optim.step()
-        self.width_optim.step()
-        self.color_optim.step()
-        for trace in self.drawing.traces:
-            trace.shape.stroke_width.data.clamp_(.5, max_width) #maybe this should be 1?
-            trace.shape_group.stroke_color.data.clamp_(0.0, 1.0)
+        # self.width_optim.step()
+        # self.color_optim.step()
+        # for trace in self.drawing.traces:
+        #     trace.shape.stroke_width.data.clamp_(.5, max_width) #maybe this should be 1?
+        #     trace.shape_group.stroke_color.data.clamp_(0.0, 1.0)
 
         self.losses = {
             'global': loss,
