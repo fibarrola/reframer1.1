@@ -106,8 +106,6 @@ def treebranch_initialization(
                     )
                     starting_colors.append(trace.shape_group.stroke_color)
 
-    print(starting_colors)
-    # assert False
     # If no endpoints in drawing zone, we make everything random
     K1 = round(partition['K1'] * num_traces) if starting_points else 0
     K2 = round(partition['K2'] * num_traces) if starting_points else 0
@@ -170,7 +168,8 @@ def treebranch_initialization(
         path = pydiffvg.Path(
             num_control_points=num_control_points,
             points=points,
-            stroke_width=torch.tensor(float(random.randint(1, 10)) / 2),
+            # stroke_width=torch.tensor(float(random.randint(1, 10)) / 2),
+            stroke_width=drawing.traces[0].shape.stroke_width,
             is_closed=False,
         )
         shapes.append(path)
