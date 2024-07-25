@@ -106,6 +106,8 @@ def treebranch_initialization(
                     )
                     starting_colors.append(trace.shape_group.stroke_color)
 
+    print(starting_colors)
+    # assert False
     # If no endpoints in drawing zone, we make everything random
     K1 = round(partition['K1'] * num_traces) if starting_points else 0
     K2 = round(partition['K2'] * num_traces) if starting_points else 0
@@ -124,27 +126,19 @@ def treebranch_initialization(
         if k < K1:
             i0 = random.choice(range(len(starting_points)))
             p0 = starting_points[i0]
-            color = torch.tensor(
-                [
-                    max(0.0, min(1.0, c + 0.3 * (random.random() - 0.5)))
-                    for c in starting_colors[i0]
-                ]
-            )
+            color = random.choice(starting_colors)
+            
         elif k < K2:
             i0 = random.choice(range(len(first_endpoints)))
             p0 = first_endpoints[i0]
-            color = torch.tensor(
-                [
-                    max(0.0, min(1.0, c + 0.3 * (random.random() - 0.5)))
-                    for c in first_colors[i0]
-                ]
-            )
+            color = random.choice(starting_colors)
+    
         else:
             p0 = (
                 random.random() * (x1 - x0) + x0,
                 random.random() * (y1 - y0) + 1 - y1,
             )
-            color = torch.rand(4)
+            color = random.choice(starting_colors)
         points.append(p0)
 
         for j in range(num_segments):
