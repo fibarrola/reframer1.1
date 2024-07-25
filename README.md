@@ -49,8 +49,8 @@ bash Anaconda3-2023.03-Linux-x86_64.sh
 
 ### Clone this repo and go to this branch
 ```
-git clone https://github.com/Tomas-Lawton/Reframer.git
-cd Reframer/
+git clone https://github.com/fibarrola/reframer1.1.git
+cd reframer1.1/
 ```
 
 <br>
